@@ -40,22 +40,23 @@ items = [
 
 ---
 
-## Tier B: map, a lambda, chained string methods
+## Tier B: chained string methods, map, a lambda
 
-**Constraint:** You must use `map()` and a lambda. The body is a single `return` statement. No loops and no list comprehensions.
+**Constraint:** Each body is a single `return` statement. No loops and no list comprehensions.
 
-### 1. `item_names(items: list) -> list`
+### 1. `clean_name(name: str) -> str`
 
-Each name with the parenthetical size removed and the whitespace trimmed.
+The name with the parenthetical size removed and the whitespace trimmed.
 
 ```python
-item_names(items)
-['Cedar Plank', 'Brass Hinge', 'Deck Screw', 'Copper Pipe', 'Sanding Block']
+clean_name("  Cedar Plank (8ft) ")   # 'Cedar Plank'
+clean_name(" Deck Screw (box) ")     # 'Deck Screw'
+clean_name("  Sanding Block")        # 'Sanding Block'
 ```
 
 ### 2. `supplier_codes(items: list) -> list`
 
-Each supplier as a lowercase code with spaces replaced by underscores.
+Each supplier as a lowercase code with spaces replaced by underscores. You must use `map()` and a lambda.
 
 ```python
 supplier_codes(items)
@@ -66,7 +67,7 @@ supplier_codes(items)
 
 ## Tier B+: a conditional expression inside the lambda
 
-**Constraint:** Same as Tier B.
+**Constraint:** You must use `map()` and a lambda. The body is a single `return` statement. No loops and no list comprehensions.
 
 ### 3. `stock_flags(items: list) -> list`
 

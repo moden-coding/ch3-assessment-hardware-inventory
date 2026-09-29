@@ -8,27 +8,44 @@ items = [
 
 
 # === TIER B ===
-# Must use map() and a lambda. Body is a single return statement.
-# No loops, no list comprehensions.
+# Each body is a single return statement. No loops, no list comprehensions.
+# clean_name uses chained string methods. supplier_codes must use map() and
+# a lambda.
 
-def item_names(items: list) -> list:
-    """Return each name with the parenthetical size removed and the
-    whitespace trimmed."""
+def clean_name(name: str) -> str:
+    """Return the name with the parenthetical size removed and the
+    whitespace trimmed.
+
+    Examples:
+        clean_name("  Cedar Plank (8ft) ")  ->  'Cedar Plank'
+        clean_name(" Deck Screw (box) ")    ->  'Deck Screw'
+        clean_name("  Sanding Block")       ->  'Sanding Block'
+    """
     pass
 
 
 def supplier_codes(items: list) -> list:
     """Return each supplier as a lowercase code with spaces replaced by
-    underscores."""
+    underscores.
+
+    Example:
+        supplier_codes(items)  ->
+        ['northwood_mills', 'kestrel_supply', 'northwood_mills', 'kestrel_supply', 'harbor_tool_co']
+    """
     pass
 
 
 # === TIER B+ ===
-# Same constraint as Tier B.
+# Must use map() and a lambda. Body is a single return statement.
+# No loops, no list comprehensions.
 
 def stock_flags(items: list) -> list:
     """Return "Reorder" for each item whose stock has fallen below its
-    reorder point, "OK" otherwise."""
+    reorder point, "OK" otherwise.
+
+    Example:
+        stock_flags(items)  ->  ['Reorder', 'OK', 'OK', 'Reorder', 'OK']
+    """
     pass
 
 
@@ -38,26 +55,46 @@ def stock_flags(items: list) -> list:
 
 def needs_reorder(items: list) -> list:
     """For every item below its reorder point, return a dict with keys
-    "name" (cleaned as in item_names) and "short_by" (how many units below
-    the reorder point it is)."""
+    "name" (cleaned as in clean_name) and "short_by" (how many units below
+    the reorder point it is).
+
+    Example:
+        needs_reorder(items)  ->
+        [{'name': 'Cedar Plank', 'short_by': 8}, {'name': 'Copper Pipe', 'short_by': 18}]
+    """
     pass
 
 
 def supplier_count(items: list, supplier: str) -> int:
     """Return how many items come from the given supplier. The supplier is
-    a code in the same form supplier_codes produces."""
+    a code in the same form supplier_codes produces.
+
+    Examples:
+        supplier_count(items, "northwood_mills")  ->  2
+        supplier_count(items, "harbor_tool_co")   ->  1
+        supplier_count(items, "acme_lumber")      ->  0
+    """
     pass
 
 
 def restock_report(items: list, supplier: str) -> dict:
     """Return everything from one supplier that needs reordering, as a dict
     with keys "count" (how many items), "names" (their cleaned names) and
-    "units" (the total number of units short across all of them)."""
+    "units" (the total number of units short across all of them).
+
+    Examples:
+        restock_report(items, "northwood_mills")  ->  {'count': 1, 'names': ['Cedar Plank'], 'units': 8}
+        restock_report(items, "harbor_tool_co")   ->  {'count': 0, 'names': [], 'units': 0}
+        restock_report([], "northwood_mills")     ->  {'count': 0, 'names': [], 'units': 0}
+    """
     pass
 
 
 def main():
-    print("item_names:    ", item_names(items))
+    print('clean_name("  Cedar Plank (8ft) "):', repr(clean_name("  Cedar Plank (8ft) ")))
+    print('clean_name(" Deck Screw (box) "):  ', repr(clean_name(" Deck Screw (box) ")))
+    print('clean_name("  Sanding Block"):     ', repr(clean_name("  Sanding Block")))
+    print()
     print("supplier_codes:", supplier_codes(items))
     print("stock_flags:   ", stock_flags(items))
     print("needs_reorder: ", needs_reorder(items))
